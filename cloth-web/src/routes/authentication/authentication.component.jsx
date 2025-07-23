@@ -2,16 +2,12 @@ import React from "react";
 // import { useEffect } from "react";
 // import { getRedirectResult } from "firebase/auth";
 
-import {
-  auth,
-  signInWithGooglePopup,
-  signInWithGoogleRedirect,
-  createUserDocumentFromAuth,
-} from "../../utils/firebase/firebase.utils.js";
-
 import SignUpForm from "../../components/sign-up-form/sign-up-form.component.jsx";
+import SignInForm from "../../components/sign-in-form/sign-in-form.component.jsx";
 
-const SignIn = () => {
+import "./authentication.styles.scss";
+
+const Authentication = () => {
   //FIXME: No data returned from google redirected page
   // useEffect(() => {
   //   async function fetchData() {
@@ -28,15 +24,9 @@ const SignIn = () => {
   //   fetchData();
   // }, []);
 
-  const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
-  };
-
   return (
-    <div>
-      <h1>I am the signIn page</h1>
-      <button onClick={logGoogleUser}>Sign in with Google Popup</button>
+    <div className="authentication-container">
+      <SignInForm />
       {/*TODO:*/}
       {/* <button onClick={signInWithGoogleRedirect}>
         Sign In with Google Redirect
@@ -46,4 +36,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Authentication;
