@@ -1,13 +1,15 @@
 import React from "react";
-import { useEffect } from "react";
-import { getRedirectResult } from "firebase/auth";
+// import { useEffect } from "react";
+// import { getRedirectResult } from "firebase/auth";
 
 import {
   auth,
   signInWithGooglePopup,
   signInWithGoogleRedirect,
   createUserDocumentFromAuth,
-} from "../../utils/firebase/firebase.utils";
+} from "../../utils/firebase/firebase.utils.js";
+
+import SignUpForm from "../../components/sign-up-form/sign-up-form.component.jsx";
 
 const SignIn = () => {
   //FIXME: No data returned from google redirected page
@@ -39,6 +41,7 @@ const SignIn = () => {
       {/* <button onClick={signInWithGoogleRedirect}>
         Sign In with Google Redirect
       </button> */}
+      <SignUpForm />
     </div>
   );
 };
