@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 // getDoc and setDoc are actually get data out of that document inside one collection
@@ -83,3 +84,6 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 };
 
 export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);

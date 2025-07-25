@@ -12,10 +12,10 @@ const Navigation = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   // console.log(currentUser);
 
-  const signOutHandler = async () => {
-    await signOutUser();
-    setCurrentUser(null);
-  };
+  // const signOutHandler = async () => {
+  //   await signOutUser();
+  //   setCurrentUser(null);
+  // };
 
   return (
     <Fragment>
@@ -28,7 +28,7 @@ const Navigation = () => {
             SHOP
           </Link>
           {currentUser ? (
-            <span className="nav-link" onClick={signOutHandler}>
+            <span className="nav-link" onClick={signOutUser}>
               SIGN OUT
             </span>
           ) : (
