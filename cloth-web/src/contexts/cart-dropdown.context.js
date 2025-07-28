@@ -6,4 +6,8 @@ export const CartDropdownContext = createContext({
   cartItems: [],
   addItemToCart: () => {},
   cartCount: 0,
+  reduceItemQuantity: () => {},
+  addItemQuantity: () => {},
+  totalPrice: 0,
+  removeItemsFromChart: () => {},
 });

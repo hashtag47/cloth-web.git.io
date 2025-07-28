@@ -1,4 +1,6 @@
 import React from "react";
+// if button and link conflict, use useNavigate instead
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
 import Button from "../button/button.component";
@@ -10,6 +12,11 @@ import "./cart-dropdown.styles.scss";
 
 const CartDropdown = () => {
   const { cartItems } = useContext(CartDropdownContext);
+  const navigate = useNavigate();
+
+  const goToCheckoutHandler = () => {
+    navigate("/checkout");
+  };
 
   return (
     <div className="cart-dropdown-container">
@@ -19,7 +26,7 @@ const CartDropdown = () => {
         ))}
       </div>
 
-      <Button>GO TO CHECKOUT</Button>
+      <Button onClick={goToCheckoutHandler}>GO TO CHECKOUT</Button>
     </div>
   );
 };
