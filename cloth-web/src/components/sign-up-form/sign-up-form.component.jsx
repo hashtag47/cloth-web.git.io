@@ -11,6 +11,7 @@ import Button from "../button/button.component";
 
 // import { UserContext } from "../../contexts/user.context";
 
+import { BUTTON_TYPE_CLASSES } from "../../utils/button/button.utils";
 import { SignUpContainer } from "./sign-up-form.styles";
 
 const defaultFormFields = {
@@ -105,7 +106,7 @@ const SignUpForm = () => {
           name="confirmPassword"
           value={confirmPassword}
         />
-        <Button buttonType="google" type="submit">
+        <Button buttonType={BUTTON_TYPE_CLASSES.inverted} type="submit">
           Sign Up
         </Button>
       </form>
