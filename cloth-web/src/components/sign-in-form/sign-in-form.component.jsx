@@ -11,8 +11,9 @@ import {
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
+import { BUTTON_TYPE_CLASSES } from "../../utils/button/button.utils.js";
 
-import "./sign-in-form.component.scss";
+import { SignInContainer, ButtonsContainer } from "./sign-in-form.styles.jsx";
 
 const defaultFormFields = {
   email: "",
@@ -65,7 +66,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-in-container">
+    <SignInContainer>
       <h2>I already have an account</h2>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -85,16 +86,20 @@ const SignInForm = () => {
           name="password"
           value={password}
         />
-        <div className="buttons-container">
-          <Button buttonType="inverted" type="submit">
+        <ButtonsContainer>
+          <Button buttonType={BUTTON_TYPE_CLASSES.inverted} type="submit">
             SIGN IN
           </Button>
-          <Button buttonType="google" type="button" onClick={signInWithGoogle}>
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            type="button"
+            onClick={signInWithGoogle}
+          >
             GOOGLE SIGN
           </Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
 

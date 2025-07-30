@@ -5,7 +5,15 @@ import { CartDropdownContext } from "../../contexts/cart-dropdown.context";
 
 import Button from "../button/button.component";
 
-import "./checkout-item.styles.scss";
+import {
+  CheckoutItemContainer,
+  ImageContainer,
+  Name,
+  Price,
+  Quantity,
+  RemoveButton,
+  Total,
+} from "./checkout-item.styles";
 
 const CheckoutItem = () => {
   const {
@@ -26,13 +34,13 @@ const CheckoutItem = () => {
         const removeItemHandler = () => removeItemsFromChart(cartItem);
 
         return (
-          <div key={id} className="checkout-item-container">
-            <div className="image-container">
+          <CheckoutItemContainer key={id}>
+            <ImageContainer>
               <img src={imageUrl} alt={`${name}`} />
-            </div>
-            <span className="name">{name}</span>
+            </ImageContainer>
+            <Name>{name}</Name>
             <br />
-            <span className="quantity">
+            <Quantity>
               <div className="arrow" onClick={reduceItemHandler}>
                 &#10094;
               </div>
@@ -40,18 +48,16 @@ const CheckoutItem = () => {
               <div className="arrow" onClick={addItemHandler}>
                 &#10095;
               </div>
-            </span>
+            </Quantity>
 
             <br />
-            <span className="price">{price}</span>
+            <Price>{price}</Price>
             <br />
-            <div className="remove-button" onClick={removeItemHandler}>
-              &#10005;
-            </div>
-          </div>
+            <RemoveButton onClick={removeItemHandler}>&#10005;</RemoveButton>
+          </CheckoutItemContainer>
         );
       })}
-      <div className="total">Total : {totalPrice} $</div>
+      <Total>Total : {totalPrice} $</Total>
     </>
   );
 };
