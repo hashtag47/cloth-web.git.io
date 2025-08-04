@@ -18,6 +18,7 @@ const Category = () => {
   }, [category, categoriesMap]);
 
   return (
+    /**FIXME: if we made a typo in url, this error will be display on the page followed /shop/* */
     <Fragment>
       <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
       <CategoryContainer>
