@@ -4,21 +4,7 @@ import storage from "redux-persist/lib/storage";
 // import logger from "redux-logger";
 
 import { rootReducer } from "./root-reducer";
-
-// here we use curry function in js to understand the fundamentals
-const loggerMiddleware = (store) => (next) => (action) => {
-  if (!action.type) {
-    return next(action);
-  }
-
-  console.log("type", action.type);
-  console.log("payload", action.payload);
-  console.log("currentState", store.getState());
-
-  next(action);
-
-  console.log("next state", store.getState());
-};
+import { loggerMiddleware } from "./middleware/logger";
 
 // allow us to use localStorage to store the data
 const persistConfig = {
@@ -29,9 +15,17 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middleWares = [loggerMiddleware];
+const middleWares = [
+  import.meta.env.MODE !== "production" && loggerMiddleware,
+].filter(Boolean);
 
-const composedEnhancers = compose(applyMiddleware(...middleWares));
+const composeEnhancer =
+  (import.meta.env.MODE !== "production" &&
+    window &&
+    window.__REDUX_DEVTOOLS_EXTENSIONS_COMPOSE__) ||
+  compose;
+
+const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
 export const store = createStore(
   persistedReducer,
