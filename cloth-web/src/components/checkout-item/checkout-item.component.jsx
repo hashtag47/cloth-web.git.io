@@ -1,8 +1,18 @@
 import React from "react";
 
-import { useContext } from "react";
-import { CartDropdownContext } from "../../contexts/cart-dropdown.context";
+// import { useContext } from "react";
+// import { CartDropdownContext } from "../../contexts/cart-dropdown.context";
+import { useDispatch, useSelector } from "react-redux";
 
+import {
+  selectCartItems,
+  selectCartTotal,
+} from "../../store/cart/cart.selector";
+import {
+  reduceItemQuantity,
+  addItemQuantity,
+  removeItemsFromChart,
+} from "../../store/cart/cart.action";
 import Button from "../button/button.component";
 
 import {
@@ -16,22 +26,28 @@ import {
 } from "./checkout-item.styles";
 
 const CheckoutItem = () => {
-  const {
-    reduceItemQuantity,
-    addItemQuantity,
-    cartItems,
-    totalPrice,
-    removeItemsFromChart,
-  } = useContext(CartDropdownContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+  const totalPrice = useSelector(selectCartTotal);
+  // const {
+  //   reduceItemQuantity,
+  //   addItemQuantity,
+  //   cartItems,
+  //   totalPrice,
+  //   removeItemsFromChart,
+  // } = useContext(CartDropdownContext);
 
   return (
     <>
       {cartItems.map((cartItem) => {
         const { price, quantity, id, imageUrl, name } = cartItem;
 
-        const reduceItemHandler = () => reduceItemQuantity(cartItem);
-        const addItemHandler = () => addItemQuantity(cartItem);
-        const removeItemHandler = () => removeItemsFromChart(cartItem);
+        const reduceItemHandler = () =>
+          dispatch(reduceItemQuantity(cartItems, cartItem));
+        const addItemHandler = () =>
+          dispatch(addItemQuantity(cartItems, cartItem));
+        const removeItemHandler = () =>
+          dispatch(removeItemsFromChart(cartItems, cartItem));
 
         return (
           <CheckoutItemContainer key={id}>
