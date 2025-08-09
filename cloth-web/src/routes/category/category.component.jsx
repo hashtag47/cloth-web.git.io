@@ -5,13 +5,18 @@ import { useParams } from "react-router-dom";
 
 // import { CategoriesContext } from "../../contexts/categories.context";
 import ProductCard from "../../components/product-card/product-card.component";
-import { selectCategoriesMap } from "../../store/categories/category.selector";
+import Spinner from "../../components/spinner/spinner.component";
+import {
+  selectCategoriesMap,
+  selectCategoriesIsLoading,
+} from "../../store/categories/category.selector";
 
 import { CategoryContainer, CategoryTitle } from "./category.styles";
 
 const Category = () => {
   const { category } = useParams();
   const categoriesMap = useSelector(selectCategoriesMap);
+  const isLoading = useSelector(selectCategoriesIsLoading);
   // const { categoriesMap } = useContext(CategoriesContext);
   const [products, setProducts] = useState(categoriesMap[category]);
 
@@ -23,12 +28,16 @@ const Category = () => {
     /**FIXME: if we made a typo in url, this error will be display on the page followed /shop/* */
     <Fragment>
       <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
-      <CategoryContainer>
-        {products &&
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-      </CategoryContainer>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <CategoryContainer>
+          {products &&
+            products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+        </CategoryContainer>
+      )}
     </Fragment>
   );
 };
