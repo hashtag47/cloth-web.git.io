@@ -1,0 +1,11 @@
+{
+  "colorTabs.config": [
+    { "regex": ".*/src/.*", "color": "#6A5ACD", "label": "SRC" },
+    { "regex": ".*/tests?/.*", "color": "#4CAF50", "label": "TEST" }
+  ],
+  "colorTabs.tabBackground": true, // color the tab itself
+  "colorTabs.tabBorder": true, // add a colored border
+  "colorTabs.statusBarBackground": true // optional: status bar
+  // "colorTabs.titleBackground": true,  // optional: window title bar
+  // "colorTabs.activityBarBackground": true // optional: left sidebar
+}
