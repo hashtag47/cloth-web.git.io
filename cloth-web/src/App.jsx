@@ -7,30 +7,36 @@ import Navigation from "./routes/navigation/navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
 import Shop from "./routes/shop/shop.component";
 import Checkout from "./routes/checkout/checkout.component";
-import { setCurrentUser } from "./store/user/user.action";
+import { checkUserSession, setCurrentUser } from "./store/user/user.action";
 
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
+  getCurrentUser,
 } from "./utils/firebase/firebase.utils";
 
 function App() {
   // actually this dispatch would never change, but for ignoring eslint so do it
   const dispatch = useDispatch();
-  const [checkingAuth, setCheckingAuth] = useState(true);
+  // const [checkingAuth, setCheckingAuth] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
-      dispatch(setCurrentUser(user));
-      setCheckingAuth(false);
-    });
-    return unsubscribe;
+    // const unsubscribe = onAuthStateChangedListener((user) => {
+    //   if (user) {
+    //     createUserDocumentFromAuth(user);
+    //   }
+    //   dispatch(setCurrentUser(user));
+    //   setCheckingAuth(false);
+    // });
+    // return unsubscribe;
+
+    // getCurrentUser().then((user) => console.log(user));
+    dispatch(checkUserSession());
+
+    // setCheckingAuth(false);
   }, [dispatch]);
 
-  if (checkingAuth) return null;
+  // if (checkingAuth) return null;
 
   return (
     <Routes>
