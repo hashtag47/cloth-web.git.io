@@ -1,13 +1,14 @@
 [build]
-  command = "vite build"
+  base = "cloth-web"
+  command = "yarn build"     # or: npm run build
   publish = "dist"
+  functions = "netlify/functions"
 
 [dev]
-  command = "vite"        # runs Vite dev
-  targetPort = 5173       # Vite's port
-  port = 8888             # Netlify proxy port (must differ from targetPort)
+  command = "yarn dev"       # or: npm run dev
+  targetPort = 5173
+  port = 8888
   framework = "#custom"
 
 [functions]
-  directory = "netlify/functions"
   node_bundler = "esbuild"
