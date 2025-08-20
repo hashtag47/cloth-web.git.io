@@ -1,0 +1,13 @@
+[build]
+  command = "vite build"
+  publish = "dist"
+
+[dev]
+  command = "vite"        # runs Vite dev
+  targetPort = 5173       # Vite's port
+  port = 8888             # Netlify proxy port (must differ from targetPort)
+  framework = "#custom"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"

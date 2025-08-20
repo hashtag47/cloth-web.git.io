@@ -25,5 +25,13 @@ export default defineConfig([
     rules: {
       "no-unused-vars": ["warn", { varsIgnorePattern: "^[A-Z_]" }],
     },
+    // Netlify functions (Node)
+    files: ["netlify/functions/**/*.{js,jsx}"],
+    extends: [js.configs.recommended],
+    languageOptions: {
+      ecmaVersion: "latest",
+      globals: globals.node,
+      sourceType: "module",
+    },
   },
 ]);
